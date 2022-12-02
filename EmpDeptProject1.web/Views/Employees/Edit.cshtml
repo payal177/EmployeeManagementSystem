@@ -1,0 +1,52 @@
+﻿@model EmpDeptProject.Models.Models.Employee
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@*<h1>Edit</h1>*@
+
+<partial name = "_AlertPartial"/>
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Create Employee</h2>
+            <hr/>
+            <div asp-validation-summary="All" class="text-danger"> </div>
+
+
+        </div>
+        <div class="mb-3">
+            <label asp-for="EmpId"></label>
+            <input asp-for="EmpId" readonly class="form-control"/>
+            @* <span asp-validation-for="EmpId" class ="text-danger"></span>*@
+        </div>
+
+         <div class="mb-3">
+            <label asp-for="EmpName"></label>
+            <input asp-for="EmpName" class="form-control"/>
+            @* <span asp-validation-for="EmpId" class ="text-danger"></span>*@
+        </div>
+
+         <div class="mb-3">
+            <label asp-for="EmpSalary"></label>
+            <input asp-for="EmpSalary" type ="int" class="form-control"/>
+        </div>
+          <div>
+            @Html.LabelFor(model => model.Departments.DeptName, htmlAttributes: new { @class = "control-label col-md-2" })            
+            <div class="col md-10">
+                @Html.DropDownListFor(model=>model.DeptId,(SelectList)ViewBag.DeptId,new{@class="form-control"})
+            </div>
+        </div>
+        <button type ="submit" class="btn btn-primary" style="width:150px">Update</button>
+        <a asp-controller="Employees" asp-action="Index" class="btn btn-secondary" style="width:150px">Back</a>
+    </div>
+
+</form>
+@section Scripts
+    {
+        <partial name="_ValidationScriptsPartial.cshtml" />
+}
+
+
+
+
